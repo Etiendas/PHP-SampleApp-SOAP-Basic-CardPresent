@@ -145,7 +145,21 @@ class altMerchantData{
 class interchangeData {
 	public $BillPayment = '', $RequestCommercialCard = '', $ExistingDebt = '', $RequestACI = '', $TotalNumberOfInstallments = '', $CurrentInstallmentNumber = '', $RequestAdvice = '';
 }
-
+class level2Data {
+	public $BaseAmount = '', $CommodityCode = '', $CompanyName = '', $CustomerCode = '', $Description = '', $DestinationPostalCode = '', $DiscountAmount = '', $DestinationCountryCode = '', $DutyAmount = '', $FreightAmount = '', $MiscHandlingAmount = '', $OrderDate = '', $OrderNumber = '', $RequesterName = '', $ShipFromPostalCode = '', $ShipmentId = '', $Tax = '', $TaxExempt = '';
+}
+class Tax {
+	public $Amount = 'null', $Rate = 'null', $InvoiceNumber = 'null';
+}
+class ItemizedTax  {
+	public $Amount = 'null', $Rate = 'null', $Type = 'null';
+}
+class ItemizedTaxes {
+	public $ItemizedTax = 'null';
+}
+class lineItemDetail {
+	public $DiscountAmount = '', $ProductCode = '', $Tax = '', $UnitPrice = '', $Quantity = '', $Description = '', $Amount = '', $UnitOfMeasure = '', $CommodityCode = '', $DiscountAmount = '', $DiscountIncluded = '', $TaxIncluded = '', $UPC = '';
+}
 // processes soap error.  Ideally create a class to handle all CWS SOAP faults.  Please see the FaultHandler.php class
 function process_soap_error($error) {
 	foreach ( $error as $key => $value ) {
@@ -179,7 +193,7 @@ class CWSClient {
 				$serviceKey = '/' . $serviceKey;
 			$this->serviceInfo = new CWSServiceInformation ( dirname(__FILE__).'/WSDL/CwsServiceInformation.wsdl', array ('trace' => 1, 'exceptions' => 1, 'cache_wsdl' => WSDL_CACHE_NONE ) );
 			$this->bankCard = new CwsTransactionProcessing (  dirname(__FILE__).'/WSDL/CwsTransactionProcessing.wsdl', array ('trace' => 1, 'exceptions' => 1, 'cache_wsdl' => WSDL_CACHE_NONE ) );
-			$this->txnManagement = new CWSTransactionManagement (  dirname(__FILE__).'/WSDL/CWSTransactionManagement.wsdl', array ('trace' => 1, 'exceptions' => 1, 'cache_wsdl' => WSDL_CACHE_NONE ) );
+			$this->txnManagement = new CWSTransactionManagement (  dirname(__FILE__).'/WSDL/CwsDataServices.wsdl', array ('trace' => 1, 'exceptions' => 1, 'cache_wsdl' => WSDL_CACHE_NONE ) );
 			
 			$this->serviceInfo->__setLocation(Settings::BaseSvcEndpointPrimary);
 			$this->bankCard->__setLocation(Settings::BaseTxnEndpointPrimary);
