@@ -138,9 +138,6 @@ class transDataPro {
 	$Level2Data = null;
 }
 
-class altMerchantData{
-	public $CustomerServiceInternet = '', $CustomerServicePhone = '', $Description = '', $SIC = '', $MerchantId = '', $Name = '', $Address = null;
-}
 
 class interchangeData {
 	public $BillPayment = '', $RequestCommercialCard = '', $ExistingDebt = '', $RequestACI = '', $TotalNumberOfInstallments = '', $CurrentInstallmentNumber = '', $RequestAdvice = '';
